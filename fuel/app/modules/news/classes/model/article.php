@@ -1,4 +1,5 @@
 <?php
+namespace News;
 use Orm\Model;
 
 class Model_Article extends Model
@@ -12,14 +13,17 @@ class Model_Article extends Model
 	);
 
 	protected static $_observers = array(
-		'Orm\Observer_CreatedAt' => array(
+		'\Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
 			'mysql_timestamp' => false,
 		),
-		'Orm\Observer_UpdatedAt' => array(
+		'\Orm\Observer_UpdatedAt' => array(
 			'events' => array('before_save'),
 			'mysql_timestamp' => false,
 		),
+        '\News\Observer_Article' => array(
+            'events' => array('before_insert', 'before_save'),
+        ),
 	);
 
 	public static function validate($factory)

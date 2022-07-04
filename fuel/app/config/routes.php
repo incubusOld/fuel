@@ -39,5 +39,5 @@ return array(
 	 */
 
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
-    'news(/:page)?' => array('articles/index', 'name' => 'news'),
+    'news(/:page)?' => array('news/index', 'name' => 'news'),
 );
