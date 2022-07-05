@@ -17,12 +17,19 @@ Class Controller_News extends \Controller_Template {
             $data['page'] = 1;
         }
 
-        $offset = ($data['page']-1)*2;
+        $offset = ($data['page']-1) * 2;
         $data['articles'] = $articles->offset($offset)->limit(2)->get();
 
-        $this->template->menu = \Presenter::forge('menu');
-        $this->template->title = "новости";
-        $this->template->content = \View::forge('articles/index', $data);
+        if( ! \Request::is_hmvc())
+        {
+            $this->template->menu = \Presenter::forge('menu');
+            $this->template->title = "новости";
+            $this->template->content = \View::forge('articles/index', $data);
+        }
+        else
+        {
+            return $data;
+        }
 
     }
 
